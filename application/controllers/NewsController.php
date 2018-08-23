@@ -28,4 +28,24 @@ class NewsController extends CI_Controller {
 		// print_r('kaze');die();
 		$this->load->view('news/view', $data);
 	}
+
+	public function create()
+	{
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('title', 'Judul', 'required');
+		$this->form_validation->set_rules('text', 'Text', 'required');
+
+		if( $this->form_validation->run() === FALSE ) {
+			$this->load->view('news/create');
+		} else {
+			$data = $this->news_model->set_news();
+			redirect('news');
+
+		}
+
+
+	}
 }
