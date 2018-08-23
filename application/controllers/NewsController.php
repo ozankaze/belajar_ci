@@ -41,11 +41,31 @@ class NewsController extends CI_Controller {
 		if( $this->form_validation->run() === FALSE ) {
 			$this->load->view('news/create');
 		} else {
-			$data = $this->news_model->set_news();
+			$this->news_model->set_news();
 			redirect('news');
 
 		}
 
+	}
+
+	public function update($id)
+	{	
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('title', 'Judul', 'required');
+		$this->form_validation->set_rules('text', 'Text', 'required');
+
+		if( $this->form_validation->run() === FALSE ) {
+			$a = $data['news_item'] = $this->news_model->get_news_id($id);
+			// print_r($a);die();
+			$this->load->view('news/update', $data);
+
+		} else {
+			$this->news_model->update_news($id);
+			redirect('news');
+
+		}
 
 	}
 }

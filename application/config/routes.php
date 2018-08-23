@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['news'] = 'newsController';
 // create
 $route['news/create'] = 'newsController/create';
+// update
+$route['news/update/(:any)'] = 'newsController/update/$1';
 $route['news/(:any)'] = 'newsController/view/$1';
 
 
