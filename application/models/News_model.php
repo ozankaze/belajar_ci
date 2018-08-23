@@ -58,7 +58,7 @@ class News_model extends CI_Model {
 		);
 
 		$this->db->where('id', $id);
-		return $this->db->insert('news', $data);
+		return $this->db->update('news', $data);
 
 	}
 
